@@ -1,9 +1,11 @@
 import cv2
 import torch
+import time
 import numpy as np
 import matplotlib.pyplot as plt
 from segment_anything import sam_model_registry, SamPredictor
 
+# setting 
 sam_checkpoint = "sam_vit_h_4b8939.pth"
 model_type = "vit_h"
 device = "cuda:0"
@@ -32,7 +34,6 @@ def show_box(box, ax):
 # Mouse callback
 def draw_point_and_box(event, x, y, flags, param):
     global point_mode, drawing_box, ix, iy, input_points, input_labels, input_boxes, image_copy, drawing
-
     # Point mode
     # positive / negative points
     if point_mode:
@@ -53,7 +54,6 @@ def draw_point_and_box(event, x, y, flags, param):
             input_labels.append(0)
             
         cv2.imshow('Image', image)
-    
     # Bbox mode   
     elif drawing_box:
         if event == cv2.EVENT_LBUTTONDOWN:  
@@ -209,6 +209,10 @@ def main():
                             show_points(input_points_sam, input_labels_sam, plt.gca())
 
                         plt.axis('off')
+                        # save image 
+                        current_time = time.strftime("%y%m%d_%H%M%S")
+                        image_name = f"results/Result_{current_time}.png"
+                        plt.savefig(image_name)                        
                         plt.show()                    
                 
                 
@@ -279,6 +283,10 @@ def main():
                             show_box(box.cpu().numpy(), plt.gca())
 
                         plt.axis('off')
+                        # save image 
+                        current_time = time.strftime("%y%m%d_%H%M%S")
+                        image_name = f"results/Result_{current_time}.png"
+                        plt.savefig(image_name)
                         plt.show()
 
         cv2.destroyAllWindows()
