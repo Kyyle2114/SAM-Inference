@@ -5,6 +5,8 @@ Use **[Segment Anything](https://github.com/facebookresearch/segment-anything)**
 To run sam_inference.py, you need to be able to execute cv2.imshow() from OpenCV
 - It may not be supported on some Linux systems
 
+Korean tutorials : [my velog](https://velog.io/@kyyle/Segment-Anything-%EC%82%AC%EC%9A%A9%ED%95%B4-%EB%B3%B4%EA%B8%B0)
+
 ## Installation
 - Minimal libraries: ```opencv-python, numpy, torch, matplotlib```
 - CUDA is recommended, Please install CUDA and torch suitable for your GPU
